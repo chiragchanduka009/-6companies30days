@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int n = secret.length();
+        int bulls = 0;
+        int cows = 0;
+        vector<int> secretcount(10,0), guesscount(10,0);
+        for(int i=0; i<secret.size(); i++){
+            if(secret[i] == guess[i]){
+                bulls++;
+            }
+            else{
+                secretcount[secret[i] - '0']++;
+                guesscount[guess[i] - '0']++;
+            }
+        }
+
+        for(int i=0; i<10; i++){
+            cows += min(secretcount[i], guesscount[i]);
+        }
+
+        return to_string(bulls)+"A"+to_string(cows)+"B";
+    }
+};
