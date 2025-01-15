@@ -1,0 +1,29 @@
+class Solution {
+  public:
+
+    void matchPairs(int n, char nuts[], char bolts[]) {
+        unordered_map<int, int> mp1,mp2;
+        for(int i=0; i<n; i++){
+            mp1[nuts[i]]++;
+            mp2[bolts[i]]++;
+        }
+        
+        char check[] = {'!', '#', '$', '%', '&', '*', '?', '@', '^'};
+        
+        int j=0;
+        char nuts1[n], bolts1[n];
+        
+        for(int i=0; i<9; i++){
+            if(mp1[check[i]] != 0){
+                nuts1[j] = check[i];
+                bolts1[j] = check[i];
+                j++;
+            }
+        }
+        
+        for(int i=0; i<n; i++){
+            nuts[i] = nuts1[i];
+            bolts[i] = bolts1[i];
+        }
+    }
+};
