@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minExtraChar(string s, vector<string>& dictionary) {
+        int maxlen = s.length() + 1;
+        vector<int> dp(maxlen, maxlen);
+
+        dp[0] = 0;
+        unordered_set<string> wordset(dictionary.begin(), dictionary.end());
+
+        for(int i=1; i<maxlen; i++){
+            dp[i] = dp[i-1] + 1;
+
+            for(int length = 1; length<=i; length++){
+                string substring = s.substr(i-length, length);
+                if(wordset.count(substring)){
+                    dp[i] = min(dp[i], dp[i-length]);
+                }
+            }
+        }
+        return dp[maxlen - 1];
+    }
+};
