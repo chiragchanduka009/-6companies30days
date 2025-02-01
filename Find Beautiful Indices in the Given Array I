@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> beautifulIndices(string s, string a, string b, int k) {
+        vector<int> ans, indices_a, indices_b;
+        int n = s.size(), x = a.size(), y=b.size();
+
+        for(int i=0; i<=n-x; i++){
+            if(s.substr(i,x) == a) indices_a.push_back(i);
+        }
+
+        for(int i=0; i<=n-y; i++){
+            if(s.substr(i,y) == b) indices_b.push_back(i);
+        }
+
+        for(int i=0; i<indices_a.size(); i++){
+            for(int j=0; j<indices_b.size(); j++){
+                if(abs(indices_a[i] - indices_b[j]) <= k){
+                    ans.push_back(indices_a[i]);
+                    break;
+                }
+            }
+        }
+
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+};
