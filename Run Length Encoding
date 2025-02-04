@@ -1,0 +1,22 @@
+
+class Solution {
+  public:
+    string encode(string s) {
+        // code here
+        int count=1;
+        string res="";
+        for(int i=1;i<s.length();i++){
+            if(s[i-1]==s[i]){
+                count++;
+            }
+            else{
+                res+=s[i-1];
+                res+=to_string(count);
+                count=1;
+            }
+        }
+        res += s[s.length()-1];
+        res += to_string(count);
+        return res;
+    }
+};
